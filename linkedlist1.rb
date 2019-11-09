@@ -46,10 +46,11 @@ def reverse_list(list)
 end
 
 def mutate_list(list, previous=nil)
-  this_node = list
-  list.next_node = previous if previous
-  mutate_list(list.next_node, this_node) if list.next_node
-
+  if list
+    next_node = list.next_node
+    list.next_node = previous
+    mutate_list(next_node, list)
+  end
   #store current location
   #change next to point to current
 
@@ -61,9 +62,9 @@ node2 = LinkedListNode.new(99, node1)
 node3 = LinkedListNode.new(12, node2)
 
 
-#print_values(node3)
-#puts "---------"
-#revlist = reverse_list(node3)
-#print_values(revlist)
-revlist = mutate_list(node1)
-print_values(node1)
+print_values(node3)
+puts "---------"
+revlist = reverse_list(node3)
+print_values(revlist)
+revlist = mutate_list(node3)
+print_values(revlist)
